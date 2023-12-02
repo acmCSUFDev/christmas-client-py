@@ -21,7 +21,7 @@ class TreeController:
         self.ws = await websockets.connect(self.url)
         res = (await self._send(c.GetLEDCanvasInfoRequest())).get_led_canvas_info
         self.ix, self.iy = res.width, res.height
-        self.leds = (await self._send(c.GetLEDsRequest())).get_leds.leds
+        await self._cache_leds()
         
     async def close(self) -> None:
         if self.ws is None:
@@ -32,7 +32,7 @@ class TreeController:
         self.iy = None
         self.leds = None
         
-    async def update_image(self, img: np.array):
+    async def update_image(self, img: np.array) -> None:
         assert img.dtype == np.uint8
         assert img.size == (self.ix * self.iy) * 4
         msg = c.SetLEDCanvasRequest()
@@ -40,7 +40,8 @@ class TreeController:
         px.pixels = bytes(img)
         msg.pixels.CopyFrom(px)
         await self._send_lt(msg)
-        
+        await self._cache_leds()
+
     async def update_manual(self) -> None:
         if self.ws is None:
             raise PermissionError("You aren't connected, run .connect first")
@@ -73,7 +74,11 @@ class TreeController:
                 raise ValueError("Invalid message sent!")
         await self.ws.send(cmsg.SerializeToString())
         
+    async def _cache_leds(self):
+        self.leds = (await self._send(c.GetLEDsRequest())).get_leds.leds
+
     # Helpers
+    # These functions are just around as user utilities
     
     async def clear(self) -> None:
         self.leds = [0 for _ in range(len(self.leds))]
