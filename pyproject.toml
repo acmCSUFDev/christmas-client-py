@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "libacmchristmas"
+version = "0.1.0"
+description = "Write Python code to control the ACM Christmas tree!"
+authors = ["Amy Parker <amy@amyip.net>", "Diamond Dinh <diamond@libdb.so>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+protobuf = "^4.25.1"
+websockets = "^12.0"
+numpy = "^1.26.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
