@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "libacmchristmas"
-version = "0.1.4"
+version = "0.1.5"
 description = "Write Python code to control the ACM Christmas tree!"
 authors = ["Amy Parker <amy@amyip.net>", "Diamond Dinh <diamond@libdb.so>"]
 readme = "README.md"
