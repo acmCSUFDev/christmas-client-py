@@ -11,7 +11,7 @@ and interacts with [christmasd](https://github.com/acmCSUFDev/christmasd) server
 Download from PyPI:
 
 ```py
-pip3 install libacmchristmas==0.1.4
+pip3 install libacmchristmas==0.1.5
 ```
 
 ## Usage
