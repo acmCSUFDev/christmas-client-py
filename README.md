@@ -14,6 +14,10 @@ Download from PyPI:
 pip3 install libacmchristmas==0.1.5
 ```
 
+## Example
+
+See [christmas-py-example](https://github.com/acmCSUFDev/christmas-py-example).
+
 ## Usage
 
 View our wiki: https://github.com/acmCSUFDev/christmas-client-py/wiki
